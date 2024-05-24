@@ -26,7 +26,7 @@ export type InitialProducts = Prisma.PromiseReturnType<
   typeof getInitialProducts
 >;
 
-export default async function Products() {
+export default async function Home() {
   const initialProducts = await getInitialProducts();
   return (
     <div className="p-5 flex flex-col gap-5">
