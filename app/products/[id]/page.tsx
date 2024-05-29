@@ -7,10 +7,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 async function getIsOwner(userId: number) {
-  const session = await getSession();
-  if (session.id) {
-    return session.id === userId;
-  }
+  // const session = await getSession();
+  // if (session.id) {
+  //   return session.id === userId;
+  // }
   return false;
 }
 
@@ -94,4 +94,11 @@ export default async function ProductDetail({
       </div>
     </div>
   );
+}
+
+export async function generateStaticParams(){
+  const products = await db.product.findMany({
+    select:{id:true}
+  })
+  return products.map(product=>({id:product.id+""}))
 }
